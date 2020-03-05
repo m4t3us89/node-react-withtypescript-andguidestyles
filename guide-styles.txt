@@ -2,26 +2,33 @@ Thema "Dracula",
 Icon "material-icon-theme",
 
 
-1.instalar eslint:
-npm i -D eslint
-
-2.iniciar eslint:
-npx eslint --init
-
 
 --extensões visual code a serem instaladas
 1.eslint - responsável pela definição do guia de estilo
 
 2.prettier - responsável por formatar o codigo de acordo com o guia de estilo definido pelo eslint
-2.2 Configurações prettier:
+
+
+Configurações no settings.json visual code:
 no arquivo settings.json(ctrl+shit+p) do visual studio, adicionar as seguintes propiedades:
- "editor.formatOnSave" : true  //formatar aumaticamente o codigo de acordo com o guia de estilo setado
- "editor.codeActionsOnSave": {
-        // For ESLint
-        "source.fixAll.eslint": true,
-        // For TSLint
-        "source.fixAll.tslint": true,
-        // For Stylelint
-        "source.fixAll.stylelint": true
-   } 
+ "[typescript]": {  //auto edição para arquivos do tipo ts
+        "editor.formatOnSave": true
+    },
+    "[javascript]": {  //auto edição para arquivos do js
+        "editor.formatOnSave": true
+    },
    //formatar de acordo com a regra definida no eslint
+
+
+Criar arquivo:
+ .eslintrc.json
+  {
+    "extends": [
+      "prettier-standard"
+    ]
+  }
+
+ .prettier.json
+ "prettier-config-standard"
+
+fonte: https://www.npmjs.com/package/eslint-config-prettier-standard

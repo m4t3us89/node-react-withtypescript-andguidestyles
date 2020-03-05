@@ -1,5 +1,5 @@
-import Express from "express";
+import Express from 'express'
 
-const app = Express();
+const app = Express()
 
-app.listen(3000);
+app.listen(3000)
