@@ -1,0 +1,6 @@
+criar arquivo de configuração ts: (necessário instalar o typescript local no projeto: npm i -D typescript)
+npx tsc --init
+
+
+converter ts para javascript:
+npx tsc

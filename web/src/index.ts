@@ -2,4 +2,8 @@ import Express from 'express'
 
 const app = Express()
 
-app.listen(3000)
+app.get('/', (req, res) => {
+  return res.send('Helo Word')
+})
+
+app.listen(3333)
