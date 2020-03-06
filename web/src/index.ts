@@ -1,7 +1,10 @@
+import dotenv from 'dotenv'
 import express, { Errback, Request, Response, NextFunction } from 'express'
 import cors from 'cors'
 import Routes from './routes'
 import { createConnection } from 'typeorm'
+
+dotenv.config()
 ;(async function() {
   try {
     await createConnection({
