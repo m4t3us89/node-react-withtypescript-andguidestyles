@@ -14,7 +14,7 @@ dotenv.config()
       name: '',
       database: 'dbsqlite',
       type: 'sqlite',
-      //synchronize: true,
+      synchronize: true,
       entities: [`${__dirname}/entities/*.ts`],
       migrations: [`${__dirname}/migrations/*.ts`]
     })

@@ -12,5 +12,8 @@ export default class User {
   email!: string
 
   @Column()
-  city!: boolean
+  username!: string
+
+  @Column()
+  city!: string
 }
