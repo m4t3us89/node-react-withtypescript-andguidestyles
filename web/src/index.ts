@@ -1,9 +1,12 @@
-import Express from 'express'
+import express from 'express'
+import cors from 'cors'
+import Routes from './routes'
 
-const app = Express()
+const app = express()
 
-app.get('/', (req, res) => {
-  return res.send('Helo Word')
-})
+app.use(cors())
+app.use(express.json())
+app.use(Routes)
 
-app.listen(3333)
+const port = process.env.PORT || 3333
+app.listen(port, () => console.log(`On port ${port}`))
