@@ -1,26 +1,23 @@
-import { Request, Response } from 'express'
+import { Request, Response, NextFunction } from 'express'
+import { getManager } from 'typeorm'
+import User from '../entities/User'
 
-interface IUser {
-  name: string
-  email: string
-  city?: string
-}
-
-const users: IUser[] = [
-  {
-    name: 'Allisson Mateus',
-    email: 'allissonmateus89@gmail.com',
-    city: 'Palmas'
+export default class UserController {
+  async index(req: Request, res: Response, next: NextFunction) {
+    try {
+      const users = await getManager().find(User)
+      res.json(users)
+    } catch (err) {
+      next(err)
+    }
   }
-]
 
-export default {
-  async index(req: Request, res: Response) {
-    res.json(users)
-  },
-  async store(req: Request, res: Response) {
-    const user: IUser = req.body
-    users.push(user)
-    res.json(user)
+  async store(req: Request, res: Response, next: NextFunction) {
+    try {
+      const user = await getManager().save(req.body)
+      res.json(user)
+    } catch (err) {
+      next(err)
+    }
   }
 }
