@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { getManager } from 'typeorm'
+import validateEntity from '../services/validate'
 import User from '../entities/User'
 
 export default class UserController {
@@ -14,8 +15,17 @@ export default class UserController {
 
   async store(req: Request, res: Response, next: NextFunction) {
     try {
-      const user = await getManager().save(req.body)
-      res.json(user)
+      const { name, email, username, city } = req.body
+      const user = new User()
+      user.name = name
+      user.email = email
+      user.username = username
+      user.city = city
+
+      await validateEntity(user)
+
+      const newUser = await getManager().save(user)
+      res.json(newUser)
     } catch (err) {
       next(err)
     }

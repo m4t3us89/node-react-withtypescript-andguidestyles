@@ -1,4 +1,14 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import {
+  Contains,
+  IsInt,
+  Length,
+  IsEmail,
+  IsFQDN,
+  IsDate,
+  Min,
+  Max
+} from 'class-validator'
 
 @Entity()
 export default class User {
@@ -8,10 +18,11 @@ export default class User {
   @Column()
   name!: string
 
-  @Column()
+  @Column({ unique: true })
+  @IsEmail()
   email!: string
 
-  @Column()
+  @Column({ unique: true })
   username!: string
 
   @Column()

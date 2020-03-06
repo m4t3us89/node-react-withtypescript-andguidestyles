@@ -3,14 +3,16 @@ import * as jwt from 'jsonwebtoken'
 import User from '../entities/User'
 
 export default {
+  //função para lidar com a criação do token de acesso à api
   createToken({ username }: User) {
     try {
       const token = jwt.sign({ username }, 'shhhhh')
       return { token }
     } catch (err) {
-      throw new Error(err)
+      throw err
     }
   },
+  //mildware para lidar com o token de acesso á api
   validateToken(req: Request, res: Response, next: NextFunction) {
     try {
       const token: string = req.header('token') || ''
