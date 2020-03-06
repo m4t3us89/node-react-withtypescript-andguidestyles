@@ -4,7 +4,10 @@ import cors from 'cors'
 import Routes from './routes'
 import { createConnection } from 'typeorm'
 
+//handle variaveis de ambiente
 dotenv.config()
+
+//handle conexão com banco
 ;(async function() {
   try {
     await createConnection({
@@ -19,8 +22,10 @@ dotenv.config()
     console.log(err)
   }
 })()
+
 const app = express()
 
+//handle cors, body request e rotas
 app.use(cors(), express.json(), Routes)
 
 //handle error
