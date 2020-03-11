@@ -1,7 +1,8 @@
 import dotenv from 'dotenv'
-import express, { Errback, Request, Response, NextFunction } from 'express'
+import express from 'express'
 import cors from 'cors'
 import Routes from './routes'
+import handleError from './services/handleError'
 import { createConnection } from 'typeorm'
 
 //handle variaveis de ambiente
@@ -29,14 +30,7 @@ const app = express()
 app.use(cors(), express.json(), Routes)
 
 //handle error
-app.use(function(
-  err: Errback,
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
-  res.status(400).json({ handleError: true, ...err })
-})
+app.use(handleError)
 
 const port = process.env.PORT || 3333
 app.listen(port, () => console.log(`On port ${port}`))
