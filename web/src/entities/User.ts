@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  BeforeInsert,
+  BeforeUpdate
+} from 'typeorm'
 import {
   Contains,
   IsInt,
@@ -9,6 +15,7 @@ import {
   Min,
   Max
 } from 'class-validator'
+import bcrypt from '../services/bcrypt'
 
 @Entity()
 export default class User {
@@ -27,4 +34,17 @@ export default class User {
 
   @Column()
   city!: string
+
+  @Column()
+  password!: string
+
+  @BeforeInsert()
+  async cryptPasswordInsert() {
+    this.password = await bcrypt.generate(this.password)
+  }
+
+  @BeforeUpdate()
+  async cryptPasswordUpdate() {
+    if (this.password) this.password = await bcrypt.generate(this.password)
+  }
 }

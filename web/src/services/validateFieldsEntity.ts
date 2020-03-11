@@ -1,6 +1,6 @@
 import { validate } from 'class-validator'
 
-export default function(entity: any): Promise<any> {
+export default function(entity: any) {
   return new Promise(async (resolve, error) => {
     const errors = await validate(entity)
     if (errors.length > 0) {

@@ -35,7 +35,7 @@ app.use(function(
   res: Response,
   next: NextFunction
 ) {
-  res.status(400).json(err)
+  res.status(400).json({ handleError: true, ...err })
 })
 
 const port = process.env.PORT || 3333
