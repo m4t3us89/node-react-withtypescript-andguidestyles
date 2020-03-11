@@ -9,7 +9,9 @@ export default class AuthController {
     try {
       const { username, password } = req.body
 
-      const user = await getManager().findOne(User, { username })
+      const user = await getManager().findOne(User, {
+        where: [{ username }, { email: username }]
+      })
 
       if (!user) throw { message: 'Usuário não encontrado' }
 
