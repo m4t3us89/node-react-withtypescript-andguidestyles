@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import handleToken from '../services/handleToken'
+import { createToken } from '../services/handleToken'
 import { getManager } from 'typeorm'
 import User from '../entities/User'
 import bcrypt from '../services/bcrypt'
@@ -19,7 +19,7 @@ export default class AuthController {
 
       if (!isEqual) throw { message: 'Password incorreto' }
 
-      const token = handleToken.createToken(user)
+      const token = createToken(user)
       res.json(token)
     } catch (err) {
       next(err)
