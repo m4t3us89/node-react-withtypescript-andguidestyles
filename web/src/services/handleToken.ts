@@ -2,7 +2,6 @@ import { Request, Response, Errback, NextFunction } from 'express'
 import * as jwt from 'jsonwebtoken'
 import User from '../entities/User'
 
-
 //função para lidar com a criação do token de acesso à api
 export const createToken = function({ username }: User) {
   try {
@@ -12,15 +11,18 @@ export const createToken = function({ username }: User) {
     throw err
   }
 }
-    
+
 //mildware para lidar com o token de acesso á api
-export const validateToken = function(req: Request, res: Response, next: NextFunction) {
-    try {
-      const token: string = req.header('token') || ''
-      const isToken = jwt.verify(token, 'shhhhh')
-      next()
-    } catch (err) {
-      next(err)
-    }
+export const validateToken = function(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const token: string = req.header('credentials') || ''
+    const isToken = jwt.verify(token, 'shhhhh')
+    next()
+  } catch (err) {
+    next(err)
   }
 }
