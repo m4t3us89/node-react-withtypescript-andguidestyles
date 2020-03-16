@@ -45,6 +45,7 @@ export default function Login({history}:RouteComponentProps<any>) {
         formRef.current.getFieldRef(errors[0].path).focus()
       }else{
         alert(err.response.data.message)
+        reset()
       }
       //console.log('error ', err.response)
     }
@@ -57,6 +58,7 @@ export default function Login({history}:RouteComponentProps<any>) {
           <Input name='password' label='Password' type='password' />
           <button type='submit'>Enviar</button>
         </Form>
+        <small><span style={{ cursor: 'pointer' }} onClick={()=>history.push('/ahudfhsd')}>Não tem conta? Clique aqui</span></small>
     </div>
   );
 }
