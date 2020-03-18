@@ -3,7 +3,7 @@ import { RouteComponentProps } from 'react-router-dom'
 import api from '../../services/api'
 // import { Container } from './styles';
 import { Form } from '@unform/web'
-import { Input } from '../../components/form/'
+import { Input } from '../../components/form'
 import * as Yup from 'yup'
 import './styles.css'
 
@@ -14,7 +14,6 @@ interface IErroReponse extends Error{
 export default function Login({history}:RouteComponentProps<any>) {
 
   const formRef:React.MutableRefObject<any> = useRef(null)
-
 
   async function handleSubmit(data:any,{reset}:any){
     try{
@@ -58,7 +57,7 @@ export default function Login({history}:RouteComponentProps<any>) {
           <Input name='password' label='Password' type='password' />
           <button type='submit'>Enviar</button>
         </Form>
-        <small><span style={{ cursor: 'pointer' }} onClick={()=>history.push('/ahudfhsd')}>Não tem conta? Clique aqui</span></small>
+        <small><span style={{ cursor: 'pointer' }} onClick={()=>history.push('/user/create')}>Não tem conta? Clique aqui</span></small>
     </div>
   );
 }

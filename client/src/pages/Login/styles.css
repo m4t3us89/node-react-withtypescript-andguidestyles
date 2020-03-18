@@ -1,8 +1,13 @@
 .login{
     display: flex;
     align-items: center;
+    justify-items: center;
     flex-direction: column;
-    justify-content: center;
 }
 
+.login form {
+    display: flex;
+    flex-direction: column;
+}
+  
 

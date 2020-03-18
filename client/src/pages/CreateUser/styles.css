@@ -1,0 +1,15 @@
+.create-user{
+   display: flex;
+   justify-content: center;
+}
+
+.create-user .flex{
+    display: grid;
+    grid-template-columns: repeat(3,250px);
+}
+
+.create-user .flex div{
+    margin-right: 10px;
+}
+
+  

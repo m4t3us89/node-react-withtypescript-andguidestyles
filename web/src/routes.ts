@@ -1,6 +1,5 @@
 import { Router } from 'express'
-import UserController from './controllers/UserController'
-import AuthController from './controllers/AuthController'
+import { UserController, AuthController, CityController } from './controllers'
 import { validateToken } from './services/handleToken'
 
 const routes = Router()
@@ -11,5 +10,9 @@ routes.post('/authenticate', auth.authenticate)
 const user = new UserController()
 routes.get('/users', validateToken, user.index)
 routes.post('/users', user.store)
+
+const city = new CityController()
+routes.get('/citys', city.index)
+routes.post('/citys', city.store)
 
 export default routes

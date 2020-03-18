@@ -48,7 +48,7 @@ const File:React.FC<InputProps> = function ({ name, label, ...rest }) {
         {label && <label htmlFor={fieldName}>{label}</label>}
         {preview && <img src={preview} alt='Preview' width='100' />}
         <input type='file' ref={inputRef} onChange={handlePreview} {...rest} />
-        {error && <span className='errorMessage'>{error}</span>}
+        {error && <div className='errorMessage'>{error}</div>}
       </>
     )
   }

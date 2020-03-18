@@ -3,8 +3,9 @@ import { isAuthenticated } from "./auth";
 
 import { BrowserRouter, Route, Switch, Redirect, RouteProps } from "react-router-dom";
 
-import Login from './pages/Login/Login'
-import User from './pages/User/User'
+import Login from './pages/Login'
+import User from './pages/User'
+import CreateUser from './pages/CreateUser'
 
 interface IRoutes extends RouteProps{
   component : any
@@ -28,6 +29,7 @@ const Routes = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={Login} />
+      <Route exact path="/user/create" component={CreateUser} />
       <PrivateRoute path="/user" component={User} />
     </Switch>
   </BrowserRouter>

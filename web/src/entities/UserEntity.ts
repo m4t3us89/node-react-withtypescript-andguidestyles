@@ -3,7 +3,15 @@ import {
   PrimaryGeneratedColumn,
   Column,
   BeforeInsert,
-  BeforeUpdate
+  BeforeUpdate,
+  AfterUpdate,
+  OneToOne,
+  JoinColumn,
+  ColumnOptions,
+  Unique,
+  Check,
+  getManager,
+  AfterInsert
 } from 'typeorm'
 import {
   Contains,
@@ -13,9 +21,11 @@ import {
   IsFQDN,
   IsDate,
   Min,
-  Max
+  Max,
+  IsNotEmpty
 } from 'class-validator'
 import bcrypt from '../services/bcrypt'
+import { Address } from '.'
 
 @Entity()
 export default class User {
@@ -33,15 +43,32 @@ export default class User {
   username!: string
 
   @Column()
-  city!: string
-
-  @Column()
   password!: string
+
+  @OneToOne(type => Address)
+  @JoinColumn()
+  address!: Address
 
   @BeforeInsert()
   async cryptPasswordInsert() {
     this.password = await bcrypt.generate(this.password)
   }
+
+  /*@BeforeInsert()
+  async uniqueEmail() {
+    const isEmail = await getManager().findOne(User, {
+      email: this.email
+    })
+    if (isEmail) throw { message: `O email "${this.email}" já existe` }
+  }
+
+  @BeforeInsert()
+  async uniqueUsername() {
+    const isUsername = await getManager().findOne(User, {
+      username: this.username
+    })
+    if (isUsername) throw { message: `O username "${this.username}" já existe` }
+  }*/
 
   @BeforeUpdate()
   async cryptPasswordUpdate() {

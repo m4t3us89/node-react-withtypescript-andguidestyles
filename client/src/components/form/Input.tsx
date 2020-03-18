@@ -21,7 +21,7 @@ const Input:React.FC<InputProps> = function({ name, label, ...rest }) {
   }, [fieldName, registerField])
 
   return (
-    <>
+    <div>
       {label && <label htmlFor={fieldName}>{label}</label>}
 
       <input
@@ -31,8 +31,8 @@ const Input:React.FC<InputProps> = function({ name, label, ...rest }) {
         {...rest}
       />
 
-      {error && <span className='errorMessage'>{error}</span>}
-    </>
+      {error && <div className='errorMessage'>{error}</div>}
+    </div>
   )
 }
 

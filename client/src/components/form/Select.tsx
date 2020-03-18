@@ -38,7 +38,7 @@ const Select:React.FC<Props> = function({ name, label, ...rest }) {
   }, [fieldName, registerField, rest.isMulti])
 
   return (
-    <>
+    <div>
       {label && <label htmlFor={fieldName}>{label}</label>}
       <ReactSelect
         defaultValue={defaultValue}
@@ -47,8 +47,8 @@ const Select:React.FC<Props> = function({ name, label, ...rest }) {
         classNamePrefix='react-select'
         {...rest}
       />
-      {error && <span className='errorMessage'>{error}</span>}
-    </>
+      {error && <div className='errorMessage' style={{'marginTop':'5px'}}>{error}</div>}
+    </div>
   )
 }
 

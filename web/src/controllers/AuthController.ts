@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import { createToken } from '../services/handleToken'
 import { getManager } from 'typeorm'
-import User from '../entities/User'
+import { User } from '../entities'
 import bcrypt from '../services/bcrypt'
 
 export default class AuthController {
